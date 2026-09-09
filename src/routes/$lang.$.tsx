@@ -43,7 +43,7 @@ import { SeminarsPage } from "@/pages/seminars";
 import { AnimationsIndexPage, AnimationDetailPage } from "@/pages/animations";
 import type { AnimationSlug } from "@/lib/school-animations";
 import { getAnimation } from "@/lib/school-animations";
-import { courseJsonLd, faqJsonLd } from "@/lib/seo-jsonld";
+import { courseJsonLd, fairtechJsonLd, faqJsonLd } from "@/lib/seo-jsonld";
 import { FAQ_SECTIONS } from "@/lib/faq-content";
 import { ShopPage, productsQO } from "@/pages/shop";
 import { ProductDetailPage } from "@/pages/product";
