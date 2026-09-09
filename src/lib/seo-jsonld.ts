@@ -50,6 +50,9 @@ const LOCALE_DESC: Record<Lang, string> = {
   en: "Educational urban farm at Maximilien park in Brussels: animals, school workshops, holiday camps, venue rental and a zero-waste farm shop.",
 };
 
+/** Openbare profielen van de boerderij (o.a. gedecentraliseerd via Mastodon). */
+export const SAME_AS = ["https://mastodon-belgium.be/@Maximilien"];
+
 /** LocalBusiness + EducationalOrganization voor de homepagina. */
 export function homeJsonLd(lang: Lang) {
   return {
@@ -74,6 +77,7 @@ export function homeJsonLd(lang: Lang) {
         inLanguage: ["nl", "fr", "en"],
         publicAccess: true,
         isAccessibleForFree: true,
+        sameAs: SAME_AS,
       },
       {
         "@type": "EducationalOrganization",
@@ -86,6 +90,7 @@ export function homeJsonLd(lang: Lang) {
         location: { "@id": ORG_ID },
         areaServed: "Brussels-Capital Region",
         knowsLanguage: ["nl", "fr", "en"],
+        sameAs: SAME_AS,
       },
       {
         "@type": "WebSite",
@@ -199,5 +204,32 @@ export function breadcrumbJsonLd(trail: { name: string; path: string }[]) {
       name: step.name,
       item: `${SITE_URL}${step.path}`,
     })),
+  };
+}
+
+/** WebPage + organisatie voor de Fair & Open Tech-pagina. */
+export function fairtechJsonLd(lang: Lang, url: string, title: string, description: string) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${url}#webpage`,
+        url,
+        name: title,
+        description,
+        inLanguage: lang,
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        about: { "@id": ORG_ID },
+      },
+      {
+        "@type": "Organization",
+        "@id": ORG_ID,
+        name: LOCALE_NAME[lang],
+        url: SITE_URL,
+        address: ADDRESS,
+        sameAs: SAME_AS,
+      },
+    ],
   };
 }
