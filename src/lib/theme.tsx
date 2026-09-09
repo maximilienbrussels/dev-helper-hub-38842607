@@ -66,10 +66,10 @@ export function useTheme() {
   return useContext(ThemeCtx);
 }
 
-const OPTIONS: { value: Theme; label: string; Icon: typeof Sun }[] = [
-  { value: "light", label: "Licht", Icon: Sun },
-  { value: "dark", label: "Donker", Icon: Moon },
-  { value: "system", label: "Systeem", Icon: Monitor },
+const OPTIONS: { value: Theme; key: string; Icon: typeof Sun }[] = [
+  { value: "light", key: "theme.light", Icon: Sun },
+  { value: "dark", key: "theme.dark", Icon: Moon },
+  { value: "system", key: "theme.system", Icon: Monitor },
 ];
 
 /** Compact three-way segmented control: Licht / Donker / Systeem. */
