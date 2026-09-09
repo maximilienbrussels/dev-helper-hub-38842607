@@ -217,7 +217,7 @@ export function TeamBuildingPage() {
           />
         </div>
 
-        <PublicGallery urls={page?.gallery ?? []} title="Teambuilding in beeld" altBase="Teambuildingfoto" />
+        <PublicGallery urls={page?.gallery ?? []} title={t("gallery.teambuilding.title")} altBase={t("gallery.teambuilding.alt")} />
       </main>
     </div>
   );

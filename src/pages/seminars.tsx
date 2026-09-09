@@ -191,7 +191,7 @@ export function SeminarsPage() {
           />
         </div>
 
-        <PublicGallery urls={page?.gallery ?? []} title="Seminaries in beeld" altBase="Seminariefoto" />
+        <PublicGallery urls={page?.gallery ?? []} title={t("gallery.seminars.title")} altBase={t("gallery.seminars.alt")} />
       </main>
     </div>
   );

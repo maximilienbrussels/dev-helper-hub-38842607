@@ -74,7 +74,7 @@ export function RentalPage() {
           {t("rent.helpTail")}
         </p>
 
-        <PublicGallery urls={page?.gallery ?? []} title="Zalen in beeld" altBase="Foto zaal" />
+        <PublicGallery urls={page?.gallery ?? []} title={t("gallery.rental.title")} altBase={t("gallery.rental.alt")} />
       </main>
     </div>
   );

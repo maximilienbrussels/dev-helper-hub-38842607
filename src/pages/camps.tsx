@@ -69,7 +69,7 @@ export function CampsPage() {
         </div>
         <FarmCamps />
 
-        <PublicGallery urls={page?.gallery ?? []} title="Sfeerbeelden van de stages" altBase="Stagefoto" />
+        <PublicGallery urls={page?.gallery ?? []} title={t("gallery.camps.title")} altBase={t("gallery.camps.alt")} />
       </main>
     </div>
   );

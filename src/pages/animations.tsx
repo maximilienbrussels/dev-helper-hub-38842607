@@ -200,7 +200,7 @@ export function AnimationsIndexPage() {
           </div>
         </section>
 
-        <PublicGallery urls={page?.gallery ?? []} title="Animaties in beeld" altBase="Animatiefoto" />
+        <PublicGallery urls={page?.gallery ?? []} title={t("gallery.animations.title")} altBase={t("gallery.animations.alt")} />
       </main>
     </div>
   );
