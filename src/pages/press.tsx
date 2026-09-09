@@ -6,6 +6,8 @@
  */
 import { useState } from "react";
 import {
+  BarChart3,
+  Camera,
   Check,
   Copy,
   Download,
@@ -15,9 +17,11 @@ import {
   Leaf,
   Mail,
   Package,
+  Palette,
   Phone,
   Quote,
   Server,
+  Shapes,
   ShieldCheck,
   Sliders,
   type LucideIcon,
@@ -26,6 +30,7 @@ import {
 import { toast } from "sonner";
 import { useT } from "@/lib/i18n";
 import { SITE_URL } from "@/lib/routes-i18n";
+import { NavHeader } from "@/components/NavHeader";
 import { PhotoCropperModal } from "@/components/press/PhotoCropperModal";
 import { PartnerBanners } from "@/components/press/PartnerBanners";
 import { OpenGraphGenerator } from "@/components/press/OpenGraphGenerator";
