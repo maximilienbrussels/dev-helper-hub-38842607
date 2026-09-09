@@ -261,6 +261,14 @@ export const Route = createFileRoute("/$lang/$")({
         ],
       });
     }
+    if (key === "fairtech") {
+      const meta = PAGE_META.fairtech[lang];
+      return localizedHead("fairtech", lang, {
+        jsonLd: [
+          fairtechJsonLd(lang, `${SITE_URL}${pathFor("fairtech", lang)}`, meta.title, meta.description),
+        ],
+      });
+    }
     return localizedHead(key, lang);
   },
   component: LocalizedPage,
