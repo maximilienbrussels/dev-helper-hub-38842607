@@ -332,7 +332,12 @@ const ICON_FILES: { label: T3; href: string; size: string }[] = [
     href: "/icons/apple-touch-icon.png",
     size: "180 × 180 px",
   },
-  { label: { nl: "Favicon", fr: "Favicon", en: "Favicon" }, href: "/favicon.png", size: "PNG" },
+  { label: { nl: "Favicon", fr: "Favicon", en: "Favicon" }, href: "/favicon.svg", size: "SVG" },
+  {
+    label: { nl: "App-icoon", fr: "Icône d'app", en: "App icon" },
+    href: "/icons/taskbar-512.png",
+    size: "PNG 512",
+  },
 ];
 
 const COLORS: { name: string; hex: string; use: T3 }[] = [

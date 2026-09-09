@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://maximilien.dlp.li/sitemap.xml
+Sitemap: https://maximilien.brussels/sitemap.xml

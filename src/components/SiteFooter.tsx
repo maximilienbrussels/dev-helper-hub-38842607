@@ -153,6 +153,9 @@ export function SiteFooter() {
                 <LocalLink to={pathFor("events", lang)} className={LINK}>
                   {{ nl: "Kalender", fr: "Agenda", en: "Calendar" }[lang]}
                 </LocalLink>
+                <LocalLink to={pathFor("fairtech", lang)} className={LINK}>
+                  {{ nl: "Fair & Open Tech", fr: "Fair & Open Tech", en: "Fair & Open Tech" }[lang]}
+                </LocalLink>
               </nav>
             </div>
 
