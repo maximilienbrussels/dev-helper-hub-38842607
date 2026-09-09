@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import {
   ANIMATION_SLUGS,
+  DEFAULT_LANG,
   LANGS,
   NEWS,
   SITE_URL,
