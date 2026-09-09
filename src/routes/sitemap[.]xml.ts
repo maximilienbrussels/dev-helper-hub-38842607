@@ -43,6 +43,7 @@ const PUBLIC_PAGES: PageKey[] = [
   "cookies",
   "status",
   "press",
+  "fairtech",
 ];
 
 export const Route = createFileRoute("/sitemap.xml")({

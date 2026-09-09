@@ -47,6 +47,7 @@ export type PageKey =
   | "press"
   | "cookies"
   | "status"
+  | "fairtech"
   | "register";
 
 export const SLUGS: Record<PageKey, Record<Lang, string>> = {
@@ -88,6 +89,7 @@ export const SLUGS: Record<PageKey, Record<Lang, string>> = {
   press: { nl: "pers", fr: "presse", en: "press" },
   cookies: { nl: "cookies", fr: "cookies", en: "cookies" },
   status: { nl: "status", fr: "status", en: "status" },
+  fairtech: { nl: "fairtech", fr: "fairtech", en: "fairtech" },
   register: { nl: "registreren", fr: "inscription", en: "register" },
 };
 
@@ -394,6 +396,23 @@ export function newsBySlug(lang: Lang, slug: string): NewsItem | null {
 type Meta = { title: string; description: string };
 
 export const PAGE_META: Record<PageKey, Record<Lang, Meta>> = {
+  fairtech: {
+    nl: {
+      title: "Fair & Open Tech @ Maximilien — eerlijke technologie in Brussel",
+      description:
+        "Ontdek Fairphone en /e/OS op de stadsboerderij: herstelbare hardware, privacyvriendelijke software en een demostand aan de Schipperijkaai 2 in Brussel.",
+    },
+    fr: {
+      title: "Fair & Open Tech @ Maximilien — technologie équitable à Bruxelles",
+      description:
+        "Découvrez Fairphone et /e/OS à la ferme urbaine : matériel réparable, logiciels respectueux de la vie privée et un stand de démonstration au Quai des Péniches 2 à Bruxelles.",
+    },
+    en: {
+      title: "Fair & Open Tech @ Maximilien — fair technology in Brussels",
+      description:
+        "Discover Fairphone and /e/OS at the urban farm: repairable hardware, privacy-first software and a demo station at Quai des Péniches 2, Brussels.",
+    },
+  },
   faq: {
     nl: {
       title: "Veelgestelde vragen — Maxilien",
