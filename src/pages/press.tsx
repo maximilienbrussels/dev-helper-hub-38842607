@@ -70,6 +70,26 @@ const COPY = {
     fr: "Utilisez toujours le logo tel quel, avec une zone de protection suffisante (au moins la hauteur du « m »), sans l'étirer, le pivoter ni lui ajouter d'ombre.",
     en: "Always use the logo unmodified, with enough clear space around it (at least the height of the 'm'), never stretched, rotated or with added shadows.",
   } as T3,
+  lockupsTitle: {
+    nl: "Logo met naam",
+    fr: "Logo avec nom",
+    en: "Logo with wordmark",
+  } as T3,
+  lockupsLede: {
+    nl: "Het beeldmerk samen met de naam — horizontaal voor brede plaatsen, gestapeld voor smalle. Gebruik één versie per drager.",
+    fr: "L'emblème accompagné du nom — horizontal pour les espaces larges, empilé pour les étroits. Une seule version par support.",
+    en: "The emblem paired with the name — horizontal for wide spaces, stacked for narrow ones. Use one version per surface.",
+  } as T3,
+  iconsTitle: {
+    nl: "Iconen & avatars",
+    fr: "Icônes & avatars",
+    en: "Icons & avatars",
+  } as T3,
+  clearSpace: {
+    nl: "Vrije ruimte: houd rondom minstens de hoogte van de 'm' vrij.",
+    fr: "Zone de protection : gardez au moins la hauteur du « m » tout autour.",
+    en: "Clear space: keep at least the height of the 'm' free on all sides.",
+  } as T3,
   colorsTitle: { nl: "Merkkleuren", fr: "Couleurs de marque", en: "Brand colours" } as T3,
   photosTitle: { nl: "Persfoto's", fr: "Photos de presse", en: "Press photos" } as T3,
   photosLede: {
