@@ -186,6 +186,19 @@ export function NavHeader() {
             "View or verify a certificate",
           ),
         },
+        {
+          label: groupLabel(
+            "📱 Fair & Open Tech",
+            "📱 Fair & Open Tech",
+            "📱 Fair & Open Tech",
+          ),
+          href: pathFor("fairtech", lang),
+          hint: groupLabel(
+            "Fairphone en /e/OS op de boerderij",
+            "Fairphone et /e/OS à la ferme",
+            "Fairphone and /e/OS at the farm",
+          ),
+        },
       ],
     },
     {
