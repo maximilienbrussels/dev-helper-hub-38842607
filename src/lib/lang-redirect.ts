@@ -63,6 +63,7 @@ const EXTRA_SLUGS: Record<string, PageKey> = {
   transparency: "transparency",
   social: "social",
   pass: "pass",
+  fairtech: "fairtech",
 };
 
 /** Zoekt bij welke pagina een taalloze slug hoort (in eender welke taal). */

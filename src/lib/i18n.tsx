@@ -1579,18 +1579,65 @@ const I18nCtx = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: (k: s
   { lang: "nl", setLang: () => {}, t: (k) => k },
 );
 
-const STORAGE_KEY = "ferme.lang";
+/** Bewaarde taalkeuze van de bezoeker. */
+const STORAGE_KEY = "user_preferred_language";
+/** Oudere sleutel/cookie; blijft geschreven zodat SSR-doorverwijzingen werken. */
+const LEGACY_KEY = "ferme.lang";
+
+function isSupported(v: string | null | undefined): v is Lang {
+  return v === "nl" || v === "fr" || v === "en";
+}
+
+/** Taal uit het URL-voorvoegsel (/en, /nl, /fr) — die heeft altijd voorrang. */
+function langFromPath(pathname: string): Lang | null {
+  const seg = pathname.split("/").filter(Boolean)[0]?.toLowerCase();
+  return isSupported(seg) ? seg : null;
+}
+
+/** Houdt <html lang>, content-language en og:locale gelijk aan de actieve taal. */
+function syncDocumentLanguage(l: Lang) {
+  if (typeof document === "undefined") return;
+  document.documentElement.lang = l;
+  const set = (selector: string, attr: "content", value: string, create: () => HTMLMetaElement) => {
+    let el = document.head.querySelector<HTMLMetaElement>(selector);
+    if (!el) {
+      el = create();
+      document.head.appendChild(el);
+    }
+    el.setAttribute(attr, value);
+  };
+  set('meta[http-equiv="content-language"]', "content", l, () => {
+    const m = document.createElement("meta");
+    m.setAttribute("http-equiv", "content-language");
+    return m;
+  });
+  set('meta[property="og:locale"]', "content", localeFor(l).replace("-", "_"), () => {
+    const m = document.createElement("meta");
+    m.setAttribute("property", "og:locale");
+    return m;
+  });
+}
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("nl");
 
   useEffect(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY) as Lang | null;
-      if (saved && (saved === "nl" || saved === "fr" || saved === "en")) {
-        setLangState(saved);
+      // 1. URL-voorvoegsel is bepalend.
+      const fromUrl = langFromPath(window.location.pathname);
+      if (fromUrl) {
+        setLangState(fromUrl);
+        localStorage.setItem(STORAGE_KEY, fromUrl);
         return;
       }
+      // 2. Bewaarde keuze (met migratie van de oude sleutel).
+      const saved = localStorage.getItem(STORAGE_KEY) ?? localStorage.getItem(LEGACY_KEY);
+      if (isSupported(saved)) {
+        setLangState(saved);
+        localStorage.setItem(STORAGE_KEY, saved);
+        return;
+      }
+      // 3. Taal van de browser.
       const nav = (navigator.language || "nl").slice(0, 2).toLowerCase();
       if (nav === "fr" || nav === "en") setLangState(nav);
     } catch {
@@ -1602,11 +1649,12 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     setLangState(l);
     try {
       localStorage.setItem(STORAGE_KEY, l);
+      localStorage.setItem(LEGACY_KEY, l);
       // Cookie zodat de server (SSR / doorverwijzing vanaf "/") dezelfde taal kiest.
-      document.cookie = `${STORAGE_KEY}=${l}; path=/; max-age=31536000; samesite=lax`;
+      document.cookie = `${LEGACY_KEY}=${l}; path=/; max-age=31536000; samesite=lax`;
       // Lichte cookie voor eventuele externe/edge-consumers.
       document.cookie = `user_lang=${l}; path=/; max-age=31536000; samesite=lax`;
-      document.documentElement.lang = l;
+      syncDocumentLanguage(l);
     } catch {
       /* noop */
     }
@@ -1614,7 +1662,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     try {
-      document.documentElement.lang = lang;
+      syncDocumentLanguage(lang);
     } catch {
       /* noop */
     }

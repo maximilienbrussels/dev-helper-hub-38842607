@@ -19,6 +19,7 @@ import { Route as BevestigenRouteImport } from './routes/bevestigen'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as EMailadresBevestigenRouteImport } from './routes/e-mailadres-bevestigen'
+import { Route as FairtechRouteImport } from './routes/fairtech'
 import { Route as ImpressumRouteImport } from './routes/impressum'
 import { Route as InloglinkRouteImport } from './routes/inloglink'
 import { Route as KlantenkaartRouteImport } from './routes/klantenkaart'
@@ -197,6 +198,11 @@ const CookiesRoute = CookiesRouteImport.update({
 const EMailadresBevestigenRoute = EMailadresBevestigenRouteImport.update({
   id: '/e-mailadres-bevestigen',
   path: '/e-mailadres-bevestigen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FairtechRoute = FairtechRouteImport.update({
+  id: '/fairtech',
+  path: '/fairtech',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ImpressumRoute = ImpressumRouteImport.update({
@@ -874,6 +880,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/e-mailadres-bevestigen': typeof EMailadresBevestigenRoute
+  '/fairtech': typeof FairtechRoute
   '/impressum': typeof ImpressumRoute
   '/inloglink': typeof InloglinkRoute
   '/klantenkaart': typeof KlantenkaartRoute
@@ -1013,6 +1020,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/e-mailadres-bevestigen': typeof EMailadresBevestigenRoute
+  '/fairtech': typeof FairtechRoute
   '/impressum': typeof ImpressumRoute
   '/inloglink': typeof InloglinkRoute
   '/klantenkaart': typeof KlantenkaartRoute
@@ -1155,6 +1163,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/e-mailadres-bevestigen': typeof EMailadresBevestigenRoute
+  '/fairtech': typeof FairtechRoute
   '/impressum': typeof ImpressumRoute
   '/inloglink': typeof InloglinkRoute
   '/klantenkaart': typeof KlantenkaartRoute
@@ -1298,6 +1307,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookies'
     | '/e-mailadres-bevestigen'
+    | '/fairtech'
     | '/impressum'
     | '/inloglink'
     | '/klantenkaart'
@@ -1437,6 +1447,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookies'
     | '/e-mailadres-bevestigen'
+    | '/fairtech'
     | '/impressum'
     | '/inloglink'
     | '/klantenkaart'
@@ -1578,6 +1589,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookies'
     | '/e-mailadres-bevestigen'
+    | '/fairtech'
     | '/impressum'
     | '/inloglink'
     | '/klantenkaart'
@@ -1721,6 +1733,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   CookiesRoute: typeof CookiesRoute
   EMailadresBevestigenRoute: typeof EMailadresBevestigenRoute
+  FairtechRoute: typeof FairtechRoute
   ImpressumRoute: typeof ImpressumRoute
   InloglinkRoute: typeof InloglinkRoute
   KlantenkaartRoute: typeof KlantenkaartRoute
@@ -1899,6 +1912,13 @@ declare module '@tanstack/react-router' {
       path: '/e-mailadres-bevestigen'
       fullPath: '/e-mailadres-bevestigen'
       preLoaderRoute: typeof EMailadresBevestigenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fairtech': {
+      id: '/fairtech'
+      path: '/fairtech'
+      fullPath: '/fairtech'
+      preLoaderRoute: typeof FairtechRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/impressum': {
@@ -2945,6 +2965,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   CookiesRoute: CookiesRoute,
   EMailadresBevestigenRoute: EMailadresBevestigenRoute,
+  FairtechRoute: FairtechRoute,
   ImpressumRoute: ImpressumRoute,
   InloglinkRoute: InloglinkRoute,
   KlantenkaartRoute: KlantenkaartRoute,

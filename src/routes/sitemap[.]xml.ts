@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import {
   ANIMATION_SLUGS,
+  DEFAULT_LANG,
   LANGS,
   NEWS,
   SITE_URL,
@@ -43,6 +44,7 @@ const PUBLIC_PAGES: PageKey[] = [
   "cookies",
   "status",
   "press",
+  "fairtech",
 ];
 
 export const Route = createFileRoute("/sitemap.xml")({
@@ -156,7 +158,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           return (
             `  <url><loc>${SITE_URL}${e.loc}</loc>` +
             links +
-            `<xhtml:link rel="alternate" hreflang="x-default" href="${SITE_URL}${e.alts.fr}"/>` +
+            `<xhtml:link rel="alternate" hreflang="x-default" href="${SITE_URL}${e.alts[DEFAULT_LANG]}"/>` +
             (e.lastmod ? `<lastmod>${e.lastmod}</lastmod>` : "") +
             `<changefreq>weekly</changefreq><priority>${e.priority}</priority></url>`
           );

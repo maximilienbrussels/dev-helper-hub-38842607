@@ -254,6 +254,16 @@ export function SiteFooter() {
             </a>
           </p>
           <p>
+            <a
+              href="https://mastodon-belgium.be/@Maximilien"
+              rel="me noopener noreferrer"
+              target="_blank"
+              className="font-semibold text-foreground/90 hover:text-[color:var(--color-terracotta)]"
+            >
+              @Maximilien@mastodon-belgium.be
+            </a>
+          </p>
+          <p>
             {c.design}{" "}
             <a
               href="https://delplanche.cloud"
