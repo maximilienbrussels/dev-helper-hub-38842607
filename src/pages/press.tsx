@@ -6,6 +6,8 @@
  */
 import { useState } from "react";
 import {
+  BarChart3,
+  Camera,
   Check,
   Copy,
   Download,
@@ -15,9 +17,11 @@ import {
   Leaf,
   Mail,
   Package,
+  Palette,
   Phone,
   Quote,
   Server,
+  Shapes,
   ShieldCheck,
   Sliders,
   type LucideIcon,
@@ -26,6 +30,7 @@ import {
 import { toast } from "sonner";
 import { useT } from "@/lib/i18n";
 import { SITE_URL } from "@/lib/routes-i18n";
+import { NavHeader } from "@/components/NavHeader";
 import { PhotoCropperModal } from "@/components/press/PhotoCropperModal";
 import { PartnerBanners } from "@/components/press/PartnerBanners";
 import { OpenGraphGenerator } from "@/components/press/OpenGraphGenerator";
@@ -64,6 +69,26 @@ const COPY = {
     nl: "Gebruik het logo altijd ongewijzigd, met voldoende vrije ruimte rondom (minstens de hoogte van de 'm') en nooit uitgerekt, gedraaid of van een schaduw voorzien.",
     fr: "Utilisez toujours le logo tel quel, avec une zone de protection suffisante (au moins la hauteur du « m »), sans l'étirer, le pivoter ni lui ajouter d'ombre.",
     en: "Always use the logo unmodified, with enough clear space around it (at least the height of the 'm'), never stretched, rotated or with added shadows.",
+  } as T3,
+  lockupsTitle: {
+    nl: "Logo met naam",
+    fr: "Logo avec nom",
+    en: "Logo with wordmark",
+  } as T3,
+  lockupsLede: {
+    nl: "Het beeldmerk samen met de naam — horizontaal voor brede plaatsen, gestapeld voor smalle. Gebruik één versie per drager.",
+    fr: "L'emblème accompagné du nom — horizontal pour les espaces larges, empilé pour les étroits. Une seule version par support.",
+    en: "The emblem paired with the name — horizontal for wide spaces, stacked for narrow ones. Use one version per surface.",
+  } as T3,
+  iconsTitle: {
+    nl: "Iconen & avatars",
+    fr: "Icônes & avatars",
+    en: "Icons & avatars",
+  } as T3,
+  clearSpace: {
+    nl: "Vrije ruimte: houd rondom minstens de hoogte van de 'm' vrij.",
+    fr: "Zone de protection : gardez au moins la hauteur du « m » tout autour.",
+    en: "Clear space: keep at least the height of the 'm' free on all sides.",
   } as T3,
   colorsTitle: { nl: "Merkkleuren", fr: "Couleurs de marque", en: "Brand colours" } as T3,
   photosTitle: { nl: "Persfoto's", fr: "Photos de presse", en: "Press photos" } as T3,
@@ -217,14 +242,72 @@ const TECH_PRINCIPLES: {
   },
 ];
 
-const NAV_PILLS: { href: string; icon: string; label: T3 }[] = [
-  { href: "#kerncijfers", icon: "📊", label: COPY.factsTitle },
-  { href: "#logos", icon: "🎨", label: COPY.logosTitle },
-  { href: "#kleuren", icon: "🎨", label: COPY.colorsTitle },
-  { href: "#fotos", icon: "📷", label: COPY.photosTitle },
-  { href: "#tekst", icon: "📝", label: COPY.boilerplateTitle },
-  { href: "#digitaal", icon: "🛡️", label: COPY.techEyebrow },
-  { href: "#contact", icon: "✉️", label: COPY.contactTitle },
+const NAV_PILLS: { href: string; icon: LucideIcon; label: T3 }[] = [
+  { href: "#kerncijfers", icon: BarChart3, label: COPY.factsTitle },
+  { href: "#logos", icon: Shapes, label: COPY.logosTitle },
+  { href: "#kleuren", icon: Palette, label: COPY.colorsTitle },
+  { href: "#fotos", icon: Camera, label: COPY.photosTitle },
+  { href: "#tekst", icon: FileText, label: COPY.boilerplateTitle },
+  { href: "#digitaal", icon: ShieldCheck, label: COPY.techEyebrow },
+  { href: "#contact", icon: Mail, label: COPY.contactTitle },
+];
+
+/** Logo met naam: horizontaal en gestapeld, in vier kleurvarianten. */
+const LOCKUPS: {
+  id: string;
+  name: T3;
+  note: T3;
+  preview: string;
+  previewBg: string;
+  aspect: string;
+  files: { label: string; href: string }[];
+}[] = [
+  {
+    id: "horizontaal",
+    name: {
+      nl: "Horizontaal — beeldmerk + naam",
+      fr: "Horizontal — emblème + nom",
+      en: "Horizontal — emblem + name",
+    },
+    note: {
+      nl: "Voor briefhoofden, websitekoppen en banners.",
+      fr: "Pour en-têtes, bandeaux de site et bannières.",
+      en: "For letterheads, site headers and banners.",
+    },
+    preview: "/pers/lockup-horizontaal-terracotta.svg",
+    previewBg: "#F7F3EB",
+    aspect: "aspect-[39/10]",
+    files: [
+      { label: "SVG terracotta", href: "/pers/lockup-horizontaal-terracotta.svg" },
+      { label: "SVG wit", href: "/pers/lockup-horizontaal-wit.svg" },
+      { label: "SVG bosgroen", href: "/pers/lockup-horizontaal-bosgroen.svg" },
+      { label: "SVG zwart", href: "/pers/lockup-horizontaal-zwart.svg" },
+      { label: "PNG 1600 px", href: "/pers/lockup-horizontaal-terracotta-1600px.png" },
+    ],
+  },
+  {
+    id: "gestapeld",
+    name: {
+      nl: "Gestapeld — beeldmerk boven naam",
+      fr: "Empilé — emblème au-dessus du nom",
+      en: "Stacked — emblem above name",
+    },
+    note: {
+      nl: "Voor affiches, sociale media en smalle dragers.",
+      fr: "Pour affiches, réseaux sociaux et supports étroits.",
+      en: "For posters, social media and narrow surfaces.",
+    },
+    preview: "/pers/lockup-gestapeld-bosgroen.svg",
+    previewBg: "#F7F3EB",
+    aspect: "aspect-[22/18]",
+    files: [
+      { label: "SVG terracotta", href: "/pers/lockup-gestapeld-terracotta.svg" },
+      { label: "SVG wit", href: "/pers/lockup-gestapeld-wit.svg" },
+      { label: "SVG bosgroen", href: "/pers/lockup-gestapeld-bosgroen.svg" },
+      { label: "SVG zwart", href: "/pers/lockup-gestapeld-zwart.svg" },
+      { label: "PNG 1600 px", href: "/pers/lockup-gestapeld-bosgroen-1600px.png" },
+    ],
+  },
 ];
 
 
