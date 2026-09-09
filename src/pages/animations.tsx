@@ -118,7 +118,7 @@ const PICNIC_LABELS: Record<Lang, Record<string, string>> = {
 };
 
 export function AnimationsIndexPage() {
-  const { lang } = useT();
+  const { t, lang } = useT();
   const c = COPY[lang];
   const { data: page } = useQuery({
     queryKey: ["page-content", "animations"],
@@ -200,7 +200,7 @@ export function AnimationsIndexPage() {
           </div>
         </section>
 
-        <PublicGallery urls={page?.gallery ?? []} title="Animaties in beeld" altBase="Animatiefoto" />
+        <PublicGallery urls={page?.gallery ?? []} title={t("gallery.animations.title")} altBase={t("gallery.animations.alt")} />
       </main>
     </div>
   );

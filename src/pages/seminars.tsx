@@ -81,7 +81,7 @@ const COPY: Record<
 
 export function SeminarsPage() {
   const { price } = usePricing();
-  const { lang } = useT();
+  const { t, lang } = useT();
   const c = COPY[lang];
   const { data: page } = useQuery({
     queryKey: ["page-content", "seminars"],
@@ -191,7 +191,7 @@ export function SeminarsPage() {
           />
         </div>
 
-        <PublicGallery urls={page?.gallery ?? []} title="Seminaries in beeld" altBase="Seminariefoto" />
+        <PublicGallery urls={page?.gallery ?? []} title={t("gallery.seminars.title")} altBase={t("gallery.seminars.alt")} />
       </main>
     </div>
   );

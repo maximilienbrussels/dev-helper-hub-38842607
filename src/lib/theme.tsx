@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import { Check, Monitor, Moon, Sun } from "lucide-react";
+import { useT } from "@/lib/i18n";
 
 export type Theme = "light" | "dark" | "system";
 
@@ -66,25 +67,27 @@ export function useTheme() {
   return useContext(ThemeCtx);
 }
 
-const OPTIONS: { value: Theme; label: string; Icon: typeof Sun }[] = [
-  { value: "light", label: "Licht", Icon: Sun },
-  { value: "dark", label: "Donker", Icon: Moon },
-  { value: "system", label: "Systeem", Icon: Monitor },
+const OPTIONS: { value: Theme; key: string; Icon: typeof Sun }[] = [
+  { value: "light", key: "theme.light", Icon: Sun },
+  { value: "dark", key: "theme.dark", Icon: Moon },
+  { value: "system", key: "theme.system", Icon: Monitor },
 ];
 
 /** Compact three-way segmented control: Licht / Donker / Systeem. */
 export function ThemeSwitcher({ className = "" }: { className?: string }) {
   const { theme, setTheme } = useTheme();
+  const { t } = useT();
   return (
     <div
       role="radiogroup"
-      aria-label="Thema"
+      aria-label={t("theme.label")}
       className={
         "inline-flex items-center gap-1 rounded-full border border-border bg-muted/50 p-1 " +
         className
       }
     >
-      {OPTIONS.map(({ value, label, Icon }) => {
+      {OPTIONS.map(({ value, key, Icon }) => {
+        const label = t(key);
         const active = theme === value;
         return (
           <button
@@ -117,6 +120,7 @@ export function ThemeSwitcher({ className = "" }: { className?: string }) {
  */
 export function ThemeMenu({ className = "" }: { className?: string }) {
   const { theme, setTheme, resolved } = useTheme();
+  const { t } = useT();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -142,8 +146,8 @@ export function ThemeMenu({ className = "" }: { className?: string }) {
         type="button"
         aria-haspopup="menu"
         aria-expanded={open}
-        aria-label="Thema"
-        title="Thema"
+        aria-label={t("theme.label")}
+        title={t("theme.label")}
         onClick={() => setOpen((o) => !o)}
         className="inline-flex h-11 w-11 min-h-0 min-w-0 items-center justify-center rounded-full border border-border bg-muted/50 text-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
       >
@@ -152,10 +156,11 @@ export function ThemeMenu({ className = "" }: { className?: string }) {
       {open && (
         <div
           role="menu"
-          aria-label="Thema"
+          aria-label={t("theme.label")}
           className="absolute right-0 top-full z-50 mt-2 w-44 rounded-2xl border border-border/70 bg-background p-1.5 shadow-2xl"
         >
-          {OPTIONS.map(({ value, label, Icon }) => {
+          {OPTIONS.map(({ value, key, Icon }) => {
+            const label = t(key);
             const active = theme === value;
             return (
               <button

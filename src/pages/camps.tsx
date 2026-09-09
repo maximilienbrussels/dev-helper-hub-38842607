@@ -34,7 +34,7 @@ const COPY: Record<Lang, { eyebrow: string; title: string; lede: string; dayImag
 };
 
 export function CampsPage() {
-  const { lang } = useT();
+  const { t, lang } = useT();
   const c = COPY[lang];
   const { data: page } = useQuery({
     queryKey: ["page-content", "camps"],
@@ -69,7 +69,7 @@ export function CampsPage() {
         </div>
         <FarmCamps />
 
-        <PublicGallery urls={page?.gallery ?? []} title="Sfeerbeelden van de stages" altBase="Stagefoto" />
+        <PublicGallery urls={page?.gallery ?? []} title={t("gallery.camps.title")} altBase={t("gallery.camps.alt")} />
       </main>
     </div>
   );

@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { CartDrawer } from "@/components/CartDrawer";
 import { LanguageSwitcher, useT } from "@/lib/i18n";
-import { ThemeSwitcher } from "@/lib/theme";
+import { ThemeMenu, ThemeSwitcher } from "@/lib/theme";
 import { MLogo } from "@/components/MLogo";
 import { getHubMenu } from "@/lib/hub-content";
 import { useAuth, initials, firstName } from "@/lib/auth";
@@ -397,6 +397,7 @@ export function NavHeader() {
           <div className="flex shrink-0 items-center gap-0.5 sm:gap-3">
             {/* Taalkiezer alleen vanaf tablet: op mobiel staat hij in de lade. */}
             <LanguageSwitcher className="hidden md:inline-flex" />
+            <ThemeMenu className="hidden md:inline-flex" />
 
             <LocalLink
               to={pathFor("support", lang)}
