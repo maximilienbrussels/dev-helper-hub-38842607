@@ -34,7 +34,7 @@ const COPY: Record<Lang, { eyebrow: string; title: string; lede: string; dayImag
 };
 
 export function CampsPage() {
-  const { lang } = useT();
+  const { t, lang } = useT();
   const c = COPY[lang];
   const { data: page } = useQuery({
     queryKey: ["page-content", "camps"],

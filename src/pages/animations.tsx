@@ -118,7 +118,7 @@ const PICNIC_LABELS: Record<Lang, Record<string, string>> = {
 };
 
 export function AnimationsIndexPage() {
-  const { lang } = useT();
+  const { t, lang } = useT();
   const c = COPY[lang];
   const { data: page } = useQuery({
     queryKey: ["page-content", "animations"],
