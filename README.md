@@ -314,6 +314,34 @@ drift apart.
 | `maximilien-admin` | `VITE_APP_MODE=admin` | `maximilien.site` |
 | `maximilien-field` | `VITE_APP_MODE=field` | `maximilien.app` |
 
+## Community, socials & decentralised identity
+
+We publish on decentralised, self-hostable platforms first. The footer of every
+public page carries a `rel="me"` link so Mastodon can verify the domain.
+
+| Channel | Handle / URL |
+| :--- | :--- |
+| Mastodon (official) | `@Maximilien@mastodon-belgium.be` — <https://mastodon-belgium.be/@Maximilien> |
+| Fair & Open Tech page | `/nl/fairtech`, `/fr/fairtech`, `/en/fairtech` |
+| Murena partner shop | <https://murena.com/partner/Maximilienbrussels/> |
+
+### Fair & open technology
+
+The farm runs a physical Fair Tech demo station at Quai des Péniches 2 /
+Schipperijkaai 2, 1000 Brussels: repairable Fairphone hardware and
+privacy-first `/e/OS` software, plus decentralised protocols (Mastodon, Matrix).
+
+### Icon set
+
+Generated from `public/pers/logo-maximilien-terracotta.svg`:
+
+* transparent freestanding emblem — `favicon.svg`, `favicon.ico` (16/32/64),
+  `icons/taskbar-512.png` (edge to edge)
+* `purpose: "any"` — 192/512 PNGs with 10% inner padding
+* `purpose: "maskable"` — 512 PNGs with a 20% safe zone: crème `#FBF9F5` +
+  terracotta `#D95D39` (public), forest `#1E4D3B` + white (field app),
+  white + black `#111111` (manager portal)
+
 ---
 
 <div align="center">
