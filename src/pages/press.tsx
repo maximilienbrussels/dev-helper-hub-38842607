@@ -242,14 +242,72 @@ const TECH_PRINCIPLES: {
   },
 ];
 
-const NAV_PILLS: { href: string; icon: string; label: T3 }[] = [
-  { href: "#kerncijfers", icon: "📊", label: COPY.factsTitle },
-  { href: "#logos", icon: "🎨", label: COPY.logosTitle },
-  { href: "#kleuren", icon: "🎨", label: COPY.colorsTitle },
-  { href: "#fotos", icon: "📷", label: COPY.photosTitle },
-  { href: "#tekst", icon: "📝", label: COPY.boilerplateTitle },
-  { href: "#digitaal", icon: "🛡️", label: COPY.techEyebrow },
-  { href: "#contact", icon: "✉️", label: COPY.contactTitle },
+const NAV_PILLS: { href: string; icon: LucideIcon; label: T3 }[] = [
+  { href: "#kerncijfers", icon: BarChart3, label: COPY.factsTitle },
+  { href: "#logos", icon: Shapes, label: COPY.logosTitle },
+  { href: "#kleuren", icon: Palette, label: COPY.colorsTitle },
+  { href: "#fotos", icon: Camera, label: COPY.photosTitle },
+  { href: "#tekst", icon: FileText, label: COPY.boilerplateTitle },
+  { href: "#digitaal", icon: ShieldCheck, label: COPY.techEyebrow },
+  { href: "#contact", icon: Mail, label: COPY.contactTitle },
+];
+
+/** Logo met naam: horizontaal en gestapeld, in vier kleurvarianten. */
+const LOCKUPS: {
+  id: string;
+  name: T3;
+  note: T3;
+  preview: string;
+  previewBg: string;
+  aspect: string;
+  files: { label: string; href: string }[];
+}[] = [
+  {
+    id: "horizontaal",
+    name: {
+      nl: "Horizontaal — beeldmerk + naam",
+      fr: "Horizontal — emblème + nom",
+      en: "Horizontal — emblem + name",
+    },
+    note: {
+      nl: "Voor briefhoofden, websitekoppen en banners.",
+      fr: "Pour en-têtes, bandeaux de site et bannières.",
+      en: "For letterheads, site headers and banners.",
+    },
+    preview: "/pers/lockup-horizontaal-terracotta.svg",
+    previewBg: "#F7F3EB",
+    aspect: "aspect-[39/10]",
+    files: [
+      { label: "SVG terracotta", href: "/pers/lockup-horizontaal-terracotta.svg" },
+      { label: "SVG wit", href: "/pers/lockup-horizontaal-wit.svg" },
+      { label: "SVG bosgroen", href: "/pers/lockup-horizontaal-bosgroen.svg" },
+      { label: "SVG zwart", href: "/pers/lockup-horizontaal-zwart.svg" },
+      { label: "PNG 1600 px", href: "/pers/lockup-horizontaal-terracotta-1600px.png" },
+    ],
+  },
+  {
+    id: "gestapeld",
+    name: {
+      nl: "Gestapeld — beeldmerk boven naam",
+      fr: "Empilé — emblème au-dessus du nom",
+      en: "Stacked — emblem above name",
+    },
+    note: {
+      nl: "Voor affiches, sociale media en smalle dragers.",
+      fr: "Pour affiches, réseaux sociaux et supports étroits.",
+      en: "For posters, social media and narrow surfaces.",
+    },
+    preview: "/pers/lockup-gestapeld-bosgroen.svg",
+    previewBg: "#F7F3EB",
+    aspect: "aspect-[22/18]",
+    files: [
+      { label: "SVG terracotta", href: "/pers/lockup-gestapeld-terracotta.svg" },
+      { label: "SVG wit", href: "/pers/lockup-gestapeld-wit.svg" },
+      { label: "SVG bosgroen", href: "/pers/lockup-gestapeld-bosgroen.svg" },
+      { label: "SVG zwart", href: "/pers/lockup-gestapeld-zwart.svg" },
+      { label: "PNG 1600 px", href: "/pers/lockup-gestapeld-bosgroen-1600px.png" },
+    ],
+  },
 ];
 
 
