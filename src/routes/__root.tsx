@@ -160,16 +160,30 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       // stylesheet wordt via de bundle geladen (zie import bovenaan)
-      { rel: "icon", type: "image/png", href: "/favicon.png" },
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+      { rel: "icon", type: "image/x-icon", sizes: "16x16 32x32 64x64", href: "/favicon.ico" },
+      { rel: "icon", type: "image/png", sizes: "512x512", href: "/icons/taskbar-512.png" },
       {
         rel: "apple-touch-icon",
-        href: getEnvAppMode() === "field" ? "/icons/field-192.png" : "/icons/apple-touch-icon.png",
+        sizes: "180x180",
+        href:
+          getEnvAppMode() === "field"
+            ? "/icons/field-apple-touch-icon.png"
+            : getEnvAppMode() === "admin"
+              ? "/icons/admin-apple-touch-icon.png"
+              : "/icons/apple-touch-icon.png",
       },
-      // Veld-build (maximilien.app) krijgt zijn eigen app-omslag.
+      // Elke bundel (publiek, veld, beheer) krijgt zijn eigen app-omslag.
       {
         rel: "manifest",
-        href: getEnvAppMode() === "field" ? "/manifest.field.json" : "/manifest.json",
+        href:
+          getEnvAppMode() === "field"
+            ? "/manifest.field.json"
+            : getEnvAppMode() === "admin"
+              ? "/manifest.admin.json"
+              : "/manifest.json",
       },
+
 
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
